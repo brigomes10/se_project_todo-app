@@ -27,6 +27,7 @@ class Todo {
     const todoNameEl = this._todoElement.querySelector(".todo__name");
     const todoDate = this._todoElement.querySelector(".todo__date");
     const todoDeleteBtn = this._todoElement.querySelector(".todo__delete-btn");
+    //Need to set up date field so it appears on Todo's data.
 
     todoNameEl.textContent = this._data.name;
 
