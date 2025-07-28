@@ -5,10 +5,12 @@ class Todo {
   }
 
   _setEventListeners() {
-    // Set Up the delete button handler
     this._todoCheckboxEl.addEventListener("change", () => {
       this._data.completed = !this._data.completed;
       console.log(this._data.completed);
+    });
+    this._todoDeleteBtn.addEventListener("click", () => {
+      this._todoElement.remove();
     });
   }
 
@@ -26,14 +28,20 @@ class Todo {
       .cloneNode(true);
     const todoNameEl = this._todoElement.querySelector(".todo__name");
     const todoDate = this._todoElement.querySelector(".todo__date");
-    const todoDeleteBtn = this._todoElement.querySelector(".todo__delete-btn");
-    //Need to set up date field so it appears on Todo's data.
+    this._todoDeleteBtn = this._todoElement.querySelector(".todo__delete-btn");
 
     todoNameEl.textContent = this._data.name;
 
+    const dueDate = new Date(this._data.date);
+    if (!isNaN(dueDate))
+      todoDate.textContent = `Due: ${dueDate.toLocaleString("en-US", {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+      })}`;
+
     this._generateCheckBoxEl();
     this._setEventListeners();
-
     return this._todoElement;
   }
 }
