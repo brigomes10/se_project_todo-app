@@ -1,6 +1,6 @@
 # Simple Todo App
 
-Give a brief description of the project here. Feel free to give it a different name.
+This is the Todo app for Sprint 7. This is an app used to create a daily checklist.
 
 ## Functionality
 
@@ -14,4 +14,4 @@ Give a description of the technologies and techniques used. Pictures, GIFs, or s
 
 This project is deployed on GitHub Pages:
 
-- ADD LINK HERE
+Deployment Link https://brigomes10.github.io/se_project_todo-app/
