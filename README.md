@@ -4,11 +4,11 @@ This is the Todo app for Sprint 7. This is an app used to create a daily checkli
 
 ## Functionality
 
-Give a more detailed explanation of the project and its functionality.
+This project is a checklist that allows you to catagorize tasks by date.
 
 ## Technology
 
-Give a description of the technologies and techniques used. Pictures, GIFs, or screenshots that detail the project features are recommended.
+The techniques used in this project is mostly run with JavaScript.
 
 ## Deployment
 
