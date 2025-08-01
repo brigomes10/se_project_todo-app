@@ -25,11 +25,11 @@ class FormValidator {
     errorElement.classList.add(this._settings.errorClass);
   };
 
-  _hideInputError = (inputElement, settings) => {
+  _hideInputError = (inputElement) => {
     const errorElementId = `#${inputElement.id}-error`;
     const errorElement = this._formEl.querySelector(errorElementId);
-    inputElement.classList.remove(settings.inputErrorClass);
-    errorElement.classList.remove(settings.errorClass);
+    inputElement.classList.remove(this._settings.inputErrorClass);
+    errorElement.classList.remove(this._settings.errorClass);
     errorElement.textContent = "";
   };
 
@@ -77,9 +77,9 @@ class FormValidator {
     });
     this._setEventListeners();
   }
-  _resetValidation = (formEl, inputList) => {
-    inputList.forEach((input) => {
-      _hideInputError(formEl, input);
+  resetValidation = () => {
+    this._inputList.forEach((input) => {
+      this._hideInputError(input);
     });
   };
 }
