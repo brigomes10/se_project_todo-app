@@ -12,7 +12,7 @@ const todosList = document.querySelector(".todos__list");
 
 const openModal = (modal) => {
   modal.classList.add("popup_visible");
-  newTodoValidator.resetValidation();
+  //newTodoValidator.resetValidation();
 };
 
 const closeModal = (modal) => {
@@ -33,8 +33,14 @@ addTodoCloseBtn.addEventListener("click", () => {
   closeModal(addTodoPopup);
 });
 
+function renderTodo(data) {
+  const todo = generateTodo(data);
+  todosList.append(todo);
+}
+
 addTodoForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
+
   const name = evt.target.name.value;
 
   const dateInput = evt.target.date.value;
@@ -44,14 +50,13 @@ addTodoForm.addEventListener("submit", (evt) => {
 
   const id = uuidv4();
   const values = { name, date, id };
-  const todo = generateTodo(values);
-  todosList.append(todo);
+  renderTodo(values);
   closeModal(addTodoPopup);
+  newTodoValidator.resetValidation();
 });
 
 initialTodos.forEach((item) => {
-  const todo = generateTodo(item);
-  todosList.append(todo);
+  renderTodo(item);
 });
 
 const newTodoValidator = new FormValidator(validationConfig, addTodoForm);
