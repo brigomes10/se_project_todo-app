@@ -5,12 +5,15 @@ import Todo from "../components/Todo.js";
 import FormValidator from "../components/FormValidator.js";
 import Section from "../components/Section.js";
 import PopupWithForm from "../components/PopupWithForm.js";
+import TodoCounter from "../components/TodoCounter.js";
 
 const addTodoButton = document.querySelector(".button_action_add");
 const addTodoPopupEl = document.querySelector("#add-todo-popup");
 const addTodoForm = addTodoPopupEl.querySelector(".popup__form");
 const addTodoCloseBtn = addTodoPopupEl.querySelector(".popup__close");
 const todosList = document.querySelector(".todos__list");
+
+const todoCounter = new TodoCounter(initialTodos, ".counter__text");
 
 const handleFormSubmit = (data) => {
   const name = data.name;
@@ -35,34 +38,33 @@ const section = new Section({
   items: initialTodos,
   renderer: () => {
     const todo = generateTodo;
-    //todosList.classList.add(".todos__list");?
-
-    // Add to todo list
-    // Refer to forEach() loop in this file
+    todosList.classList.add(".todos__list");
   },
   containerSelector: ".todos__list",
 });
-
-//call section Instance's renderItems method
-
-//const openModal = (modal) => {
-//modal.classList.add("popup_visible");
-//newTodoValidator.resetValidation();
 
 const closeModal = (modal) => {
   modal.classList.remove("popup_visible");
 };
 
+function handleCheck(completed) {
+  todoCounter.updateCompleted(completed);
+}
+
+function handleDelete(completed) {
+  if (completed) {
+    todoCounter.updateCompleted(false);
+  }
+}
+
 const generateTodo = (data) => {
-  const todo = new Todo(data, "#todo-template");
+  const todo = new Todo(data, "#todo-template", handleCheck, handleDelete);
   const todoElement = todo.getView();
   return todoElement;
 };
 
 function handleEscapeClose(evt) {
   if (evt.key === "Escape") {
-    // Find the currently opened modal
-    // And close it
   }
 }
 
@@ -76,14 +78,12 @@ addTodoCloseBtn.addEventListener("click", () => {
 
 function renderTodo(data) {
   const todo = generateTodo(data);
-  todosList.append(todo); //use addItem method instead
+  todosList.append(todo);
 }
 
 initialTodos.forEach((item) => {
-  renderTodo(item); //use addItem method instead
+  renderTodo(item);
 });
-
-//take the initialTodo's out on line 71 and 72. 17:19 chapter 8 part 2
 
 const newTodoValidator = new FormValidator(validationConfig, addTodoForm);
 newTodoValidator.enableValidation();

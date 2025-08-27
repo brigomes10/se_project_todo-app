@@ -7,7 +7,7 @@ class Popup {
   _handleEscapeClose(evt) {
     if (evt.key === "Escape") {
       console.log("escape key was pressed");
-      // Todo- Call the close method
+      this.close();
     }
   }
 
@@ -22,15 +22,10 @@ class Popup {
   }
 
   setEventListeners() {
-    // This one listener will handle the close button and the modal listener
-
-    // this._popupCloseBtn.addEventListener("click", () => {
-    //this.close();
-    //});
-    this._popupElement.addEventListener("mousedown", (evt) => {});
-    // if the event target's classList contains "popup__close" or "popup" use if statement
-    // if (X || Y) {}
-    // then close the modal
+    this._popupElement.addEventListener("mousedown", (evt) => {
+      if (evt.target.classList.contains("popup__close") || "popup") {
+      }
+    });
   }
 }
 
